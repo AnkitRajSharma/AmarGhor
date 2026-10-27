@@ -5,8 +5,6 @@ const config: CapacitorConfig = {
   appName: 'AmarGhor',
   webDir: 'public',
   server: {
-    // Connects to live cloud backend so phone works over 5G/4G cellular & Wi-Fi
-    url: 'https://nondistortedly-endoblastic-fred.ngrok-free.dev',
     cleartext: true,
   },
   android: {

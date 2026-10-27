@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>AmarGhor - Smart Homes & PG</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 50% 20%, #064e3b 0%, #022c22 45%, #051c14 100%);
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 20px;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 32px 24px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+    }
+    .logo-container {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px auto;
+      background: rgba(16, 185, 129, 0.15);
+      border: 2px solid rgba(16, 185, 129, 0.4);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.3);
+    }
+    .logo-container img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+    }
+    h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+    h1 span {
+      color: #34d399;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #6ee7b7;
+      margin-bottom: 24px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulse 2s infinite;
+    }
+    .dot.error {
+      background: #ef4444;
+      box-shadow: 0 0 10px #ef4444;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 14px 20px;
+      background: #059669;
+      color: white;
+      border: none;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 20px -5px rgba(5, 150, 105, 0.4);
+      transition: all 0.2s;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .btn:active {
+      transform: scale(0.98);
+      background: #047857;
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      box-shadow: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .url-box {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left;
+    }
+    .url-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+    .url-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      color: #f1f5f9;
+      font-size: 12px;
+      outline: none;
+      margin-bottom: 10px;
+    }
+    .url-input:focus {
+      border-color: #10b981;
+    }
+    .footer-text {
+      font-size: 11px;
+      color: #64748b;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo-container">
+      <img src="house.png" alt="AmarGhor Logo" onerror="this.src='logo.png'" />
+    </div>
+
+    <h1>Amar<span>Ghor</span></h1>
+    <p class="subtitle">Real Estate & PG with 100% Brokerage Transparency and Live Cloud Atlas Sync</p>
+
+    <div class="status-badge" id="statusBadge">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">Connecting to AmarGhor Cloud...</span>
+    </div>
+
+    <button class="btn" id="launchBtn" onclick="launchApp()">Open AmarGhor App</button>
+    <button class="btn btn-secondary" onclick="checkConnection()">Check Connection</button>
+
+    <div class="url-box">
+      <div class="url-label">Backend Cloud Server URL</div>
+      <input type="text" id="serverUrlInput" class="url-input" placeholder="https://your-backend.onrender.com" />
+      <button class="btn btn-secondary" style="margin-bottom: 0;" onclick="saveAndConnect()">Save & Reconnect</button>
+    </div>
+
+    <p class="footer-text">Powered by MongoDB Atlas Cloud & Cloudinary</p>
+  </div>
+
+  <script>
+    const DEFAULT_URL = '';
+    let targetUrl = localStorage.getItem('amarghor_server_url') || DEFAULT_URL;
+
+    const input = document.getElementById('serverUrlInput');
+    const statusText = document.getElementById('statusText');
+    const statusDot = document.getElementById('statusDot');
+    const launchBtn = document.getElementById('launchBtn');
+
+    input.value = targetUrl;
+
+    async function checkConnection() {
+      if (!targetUrl) {
+        statusText.innerText = 'Enter your Cloud Server URL below';
+        statusDot.className = 'dot';
+        statusDot.style.background = '#f59e0b';
+        return false;
+      }
+
+      statusText.innerText = 'Testing connection...';
+      statusDot.className = 'dot';
+
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 4000);
+        const res = await fetch(targetUrl + '/api/health', {
+          signal: controller.signal,
+        });
+        clearTimeout(timeout);
+
+        if (res.ok) {
+          const data = await res.json();
+          statusText.innerText = 'Connected: ' + (data.database || 'MongoDB Cloud Ready');
+          statusDot.className = 'dot';
+          statusDot.style.background = '#10b981';
+          return true;
+        } else {
+          statusText.innerText = 'Server responding with ' + res.status;
+          return true; // Still reachable
+        }
+      } catch (e) {
+        statusText.innerText = 'Server unreachable. Check URL or internet connection.';
+        statusDot.className = 'dot error';
+        return false;
+      }
+    }
+
+    function launchApp() {
+      if (targetUrl) {
+        window.location.href = targetUrl;
+      } else {
+        alert('Please enter your backend URL first');
+      }
+    }
+
+    function saveAndConnect() {
+      const newUrl = input.value.trim().replace(/\/$/, '');
+      if (newUrl) {
+        targetUrl = newUrl;
+        localStorage.setItem('amarghor_server_url', targetUrl);
+        checkConnection().then(ok => {
+          if (ok) {
+            setTimeout(launchApp, 500);
+          }
+        });
+      }
+    }
+
+    // Auto-check and redirect on open if targetUrl is set
+    window.addEventListener('load', () => {
+      if (targetUrl) {
+        checkConnection().then(ok => {
+          if (ok) {
+            setTimeout(launchApp, 800);
+          }
+        });
+      } else {
+        statusText.innerText = 'Enter your Cloud Server URL below';
+      }
+    });
+  </script>
+</body>
+</html>
