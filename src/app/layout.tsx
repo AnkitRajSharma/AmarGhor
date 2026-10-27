@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://amarghor.onrender.com'),
   title: 'AmarGhor - Smart PG, Flat & Rental Real Estate Platform',
   description:
     'Find and list verified PGs, 1BHK, 2BHK flats, and houses across India. Transparent pricing breakdown, real-time brokerage calculation, and direct owner contacts.',

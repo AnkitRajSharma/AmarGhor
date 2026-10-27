@@ -1,4 +1,5 @@
 import mongoose, { Document, Model, Schema } from 'mongoose';
+import './User';
 
 export type PropertyType = 'PG' | '1BHK' | '2BHK' | '3BHK' | 'Flat' | 'House' | 'Room';
 export type ListingType = 'Rent' | 'Sale' | 'PG/Co-Living';

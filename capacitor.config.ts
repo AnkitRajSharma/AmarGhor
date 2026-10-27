@@ -5,6 +5,7 @@ const config: CapacitorConfig = {
   appName: 'AmarGhor',
   webDir: 'public',
   server: {
+    url: 'https://amarghor.onrender.com',
     cleartext: true,
   },
   android: {

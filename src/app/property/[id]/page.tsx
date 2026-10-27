@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import connectToDatabase from '@/lib/mongodb';
 import Property from '@/models/Property';
+import '@/models/User';
 import { maskPhoneNumber } from '@/lib/utils';
 import ImageGallery from '@/components/ImageGallery';
 import PricingBreakdownCard from '@/components/PricingBreakdownCard';

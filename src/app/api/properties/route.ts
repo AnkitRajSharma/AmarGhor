@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectToDatabase from '@/lib/mongodb';
 import Property from '@/models/Property';
+import '@/models/User';
 import { getUserFromRequest } from '@/lib/jwt';
 import { maskPhoneNumber } from '@/lib/utils';
 
